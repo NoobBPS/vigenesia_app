@@ -16,12 +16,12 @@ class EditPage extends StatefulWidget {
 }
 
 class _EditPageState extends State<EditPage> {
-  String baseurl = 'https://8f90-202-51-197-75.ngrok-free.app/vigenesia'; // ganti dengan ip address kamu / tempat kamu menyimpan backend
+  String baseurl = 'https://9d2e-202-51-197-75.ngrok-free.app/'; // ganti dengan ip address kamu / tempat kamu menyimpan backend
 
   var dio = Dio();
   Future<dynamic> putPost(String isi_motivasi, String ids) async {
     Map<String, dynamic> data = {"isi_motivasi": isi_motivasi, "id": ids};
-    var response = await dio.put('$baseurl/aci/api/dev/PUTmotivasi',
+    var response = await dio.put('$baseurl/api/dev/PUTmotivasi',
         data: data,
         options: Options(
           contentType: Headers.formUrlEncodedContentType,

@@ -14,7 +14,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   // Ganti Base URL
 
-  String baseurl = 'https://8f90-202-51-197-75.ngrok-free.app/vigenesia'; // ganti dengan ip address kamu / tempat kamu menyimpan backend
+  String baseurl = 'https://9d2e-202-51-197-75.ngrok-free.app/vigenesia'; // ganti dengan ip address kamu / tempat kamu menyimpan backend
 
   Future postRegister(
       String nama, String profesi, String email, String password) async {
