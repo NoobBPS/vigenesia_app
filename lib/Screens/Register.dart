@@ -1,8 +1,7 @@
-import 'package:org/Constant/const.dart';
-import 'package:flutter/material.dart';
 import 'package:another_flushbar/flushbar.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -13,8 +12,8 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   // Ganti Base URL
-
-  String baseurl = 'https://9d2e-202-51-197-75.ngrok-free.app/vigenesia'; // ganti dengan ip address kamu / tempat kamu menyimpan backend
+  String baseurl =
+      'https://78d4-103-108-130-37.ngrok-free.app/vigenesia'; // ganti dengan ip address kamu / tempat kamu menyimpan backend
 
   Future postRegister(
       String nama, String profesi, String email, String password) async {
@@ -46,9 +45,11 @@ class _RegisterState extends State<Register> {
   TextEditingController profesiController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlue[100], // Tambahkan ini
       body: SingleChildScrollView(
         child: SafeArea(
           child: Center(
@@ -60,89 +61,102 @@ class _RegisterState extends State<Register> {
                 children: [
                   Text(
                     "Register Your Account",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black, // Warna teks diatur ke hitam
+                    ),
                   ),
                   SizedBox(height: 50),
                   FormBuilderTextField(
                     name: "name",
                     controller: nameController,
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 10),
-                        border: OutlineInputBorder(),
-                        labelText: "Nama"),
+                      contentPadding: EdgeInsets.only(left: 10),
+                      border: OutlineInputBorder(),
+                      labelText: "Nama",
+                      labelStyle: TextStyle(color: Colors.black), // Warna label diatur ke hitam
+                    ),
+                    style: TextStyle(color: Colors.black), // Warna teks diatur ke hitam
                   ),
                   SizedBox(height: 20),
                   FormBuilderTextField(
                     name: "profesi",
                     controller: profesiController,
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 10),
-                        border: OutlineInputBorder(),
-                        labelText: "Profesi"),
+                      contentPadding: EdgeInsets.only(left: 10),
+                      border: OutlineInputBorder(),
+                      labelText: "Profesi",
+                      labelStyle: TextStyle(color: Colors.black), // Warna label diatur ke hitam
+                    ),
+                    style: TextStyle(color: Colors.black), // Warna teks diatur ke hitam
                   ),
                   SizedBox(height: 20),
                   FormBuilderTextField(
                     name: "email",
                     controller: emailController,
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 10),
-                        border: OutlineInputBorder(),
-                        labelText: "Email"),
+                      contentPadding: EdgeInsets.only(left: 10),
+                      border: OutlineInputBorder(),
+                      labelText: "Email",
+                      labelStyle: TextStyle(color: Colors.black), // Warna label diatur ke hitam
+                    ),
+                    style: TextStyle(color: Colors.black), // Warna teks diatur ke hitam
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: 20),
                   FormBuilderTextField(
-                    obscureText:
-                        true, // <-- Buat bikin setiap inputan jadi bintang " * "
+                    obscureText: true,
                     name: "password",
                     controller: passwordController,
-
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 10),
-                        border: OutlineInputBorder(),
-                        labelText: "Password"),
+                      contentPadding: EdgeInsets.only(left: 10),
+                      border: OutlineInputBorder(),
+                      labelText: "Password",
+                      labelStyle: TextStyle(color: Colors.black), // Warna label diatur ke hitam
+                    ),
+                    style: TextStyle(color: Colors.black), // Warna teks diatur ke hitam
                   ),
-                  SizedBox(
-                    height: 30,
-                  ),
+                  SizedBox(height: 30),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
-                        onPressed: () async {
-                          await postRegister(
-                                  nameController.text,
-                                  profesiController.text,
-                                  emailController.text,
-                                  passwordController.text)
-                              .then((value) => {
-                                    if (value != null)
-                                      {
-                                        setState(() {
-                                          Navigator.pop(context);
-                                          Flushbar(
-                                            message: "Berhasil Registrasi",
-                                            duration: Duration(seconds: 2),
-                                            backgroundColor: Colors.greenAccent,
-                                            flushbarPosition:
-                                                FlushbarPosition.TOP,
-                                          ).show(context);
-                                        })
-                                      }
-                                    else if (value == null)
-                                      {
+                      onPressed: () async {
+                        await postRegister(
+                                nameController.text,
+                                profesiController.text,
+                                emailController.text,
+                                passwordController.text)
+                            .then((value) => {
+                                  if (value != null)
+                                    {
+                                      setState(() {
+                                        Navigator.pop(context);
                                         Flushbar(
-                                          message:
-                                              "Check Your Field Before Register",
-                                          duration: Duration(seconds: 5),
-                                          backgroundColor: Colors.redAccent,
-                                          flushbarPosition:
-                                              FlushbarPosition.TOP,
-                                        ).show(context)
-                                      }
-                                  });
-                        },
-                        child: Text("Daftar")),
+                                          message: "Berhasil Registrasi",
+                                          duration: Duration(seconds: 2),
+                                          backgroundColor: Colors.greenAccent,
+                                          flushbarPosition: FlushbarPosition.TOP,
+                                          messageColor: Colors.black, // Warna pesan diatur ke hitam
+                                        ).show(context);
+                                      })
+                                    }
+                                  else if (value == null)
+                                    {
+                                      Flushbar(
+                                        message: "Check Your Field Before Register",
+                                        duration: Duration(seconds: 5),
+                                        backgroundColor: Colors.redAccent,
+                                        flushbarPosition: FlushbarPosition.TOP,
+                                        messageColor: Colors.black, // Warna pesan diatur ke hitam
+                                      ).show(context)
+                                    }
+                                });
+                      },
+                      child: Text(
+                        "Daftar",
+                        style: TextStyle(color: Colors.black), // Warna teks diatur ke hitam
+                      ),
+                    ),
                   ),
                 ],
               ),
