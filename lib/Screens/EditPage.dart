@@ -1,22 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'dart:convert';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:dio/dio.dart';
-import 'package:org/Constant/const.dart';
-import 'package:org/Models/Motivasi_Model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class EditPage extends StatefulWidget {
   final String? id;
   final String? isi_motivasi;
-  const EditPage({Key? key, this.id, this.isi_motivasi}) : super(key: key);
+  const EditPage({Key? key, this.id, this.isi_motivasi, String? isiMotivasi}) : super(key: key);
 
   @override
   _EditPageState createState() => _EditPageState();
 }
 
 class _EditPageState extends State<EditPage> {
-  String baseurl = 'https://9d2e-202-51-197-75.ngrok-free.app/'; // ganti dengan ip address kamu / tempat kamu menyimpan backend
+  String baseurl =
+      'https://78d4-103-108-130-37.ngrok-free.app/'; // ganti dengan ip address kamu / tempat kamu menyimpan backend
 
   var dio = Dio();
   Future<dynamic> putPost(String isi_motivasi, String ids) async {
