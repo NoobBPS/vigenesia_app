@@ -1,13 +1,12 @@
-import 'package:another_flushbar/flushbar.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:dio/dio.dart';
-import 'MainScreens.dart';
-import 'package:org/Constant/const.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:org/Models/Login_Model.dart';
+
+import 'MainScreens.dart';
 import 'Register.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:convert';
 
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
@@ -31,14 +30,13 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
 
   Future<LoginModels?> postLogin(String email, String password) async {
     var dio = Dio();
-    String baseurl = 'https://9d2e-202-51-197-75.ngrok-free.app/vigenesia';
+    String baseurl = 'https://78d4-103-108-130-37.ngrok-free.app/vigenesia';
     LoginModels? model;
 
     Map<String, dynamic> data = {"email": email, "password": password};
     print("$baseurl/api/login");
     try {
-      final response = await dio.post(
-          "$baseurl/api/login",
+      final response = await dio.post("$baseurl/api/login",
           data: data,
           options: Options(headers: {'Content-type': 'application/json'}));
 
@@ -64,16 +62,30 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
       child: Container(
         height: MediaQuery.of(context).size.height,
         margin: const EdgeInsets.only(left: 0, right: 0),
-        decoration: new BoxDecoration(color: Colors.blue),
+        decoration: new BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomCenter,
+            //jumlah stop berbanding lurus dengan jumlah warna
+            stops: [0.3, 0.6, 0.9],
+            colors: [
+              Color.fromRGBO(12, 235, 235, 1),
+              Color.fromRGBO(32, 227, 178, 1),
+              Color.fromRGBO(41, 255, 198, 1),
+            ],
+          ),
+        ),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
             "VIGENESIA",
-            style: TextStyle(
+            style: GoogleFonts.montserrat(
                 fontSize: 40, fontWeight: FontWeight.w500, color: Colors.white),
           ),
           Text(
             "Visi Generasi Indonesia",
-            style: TextStyle(
+            style: GoogleFonts.montserrat(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
@@ -96,7 +108,7 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                     children: [
                       Text(
                         "LOGIN",
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
                             fontSize: 27,
                             fontWeight: FontWeight.w800,
                             color: Colors.blue),
@@ -118,7 +130,7 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                               borderSide:
                                   BorderSide(color: Colors.blue, width: 1.0),
                             ),
-                            labelStyle: TextStyle(color: Colors.blue),
+                            labelStyle: GoogleFonts.lato(color: Colors.blue),
                             labelText: "Email",
                           )),
                       SizedBox(
@@ -142,7 +154,7 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                                 BorderSide(color: Colors.blue, width: 1.0),
                           ),
                           labelText: "Password",
-                          labelStyle: TextStyle(color: Colors.blue),
+                          labelStyle: GoogleFonts.lato(color: Colors.blue),
                         ),
                       ),
                       SizedBox(
@@ -190,7 +202,7 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                         TextSpan(children: [
                           TextSpan(
                               text: 'Dont Have an Account ? ',
-                              style: TextStyle(color: Colors.black54)),
+                              style: GoogleFonts.lato(color: Colors.black54)),
                           TextSpan(
                               text: 'Sign Up',
                               recognizer: TapGestureRecognizer()
@@ -201,7 +213,7 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                                           builder: (BuildContext context) =>
                                               new Register()));
                                 },
-                              style: TextStyle(
+                              style: GoogleFonts.lato(
                                   fontWeight: FontWeight.w600,
                                   color: Colors.black54))
                         ]),
