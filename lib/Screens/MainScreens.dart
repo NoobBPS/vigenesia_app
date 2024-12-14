@@ -1,26 +1,29 @@
+// ignore_for_file: file_names, non_constant_identifier_names, empty_catches
+
 import 'dart:convert';
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:org/Screens/EditPage.dart';
 import 'package:org/Screens/Login.dart';
-
 import '../Models/Motivasi_Model.dart';
 
 class MainScreens extends StatefulWidget {
   final String? nama;
   final String? iduser;
 
-  const MainScreens({Key? key, this.nama, this.iduser}) : super(key: key);
+  const MainScreens({super.key, this.nama, this.iduser});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MainScreenState createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreens> {
-  String baseurl = 'https://78d4-103-108-130-37.ngrok-free.app/vigenesia';
+  String baseurl = 'http://localhost/vigenesia/';
 
   String? id;
   var dio = Dio();
@@ -40,10 +43,8 @@ class _MainScreenState extends State<MainScreens> {
             //validateStatus: (status) => true,
           ));
 
-      print("Respon -> ${response.data} + ${response.statusCode}");
       return response;
     } catch (e) {
-      print("error di -> $e");
     }
   }
 
@@ -52,7 +53,6 @@ class _MainScreenState extends State<MainScreens> {
   Future<List<MotivasiModel>> getData() async {
     var response = await dio.get('$baseurl/api/Get_motivasi/');
 
-    print(" ${response.data}");
     if (response.statusCode == 200) {
       var getUserData = response.data as List;
       var listUsers =
@@ -72,7 +72,6 @@ class _MainScreenState extends State<MainScreens> {
         options: Options(
             contentType: Headers.formUrlEncodedContentType,
             headers: {"Content-type": "application/json"}));
-    print("${response.data}");
     var resbody = jsonDecode(response.data);
     return resbody;
   }
@@ -95,6 +94,7 @@ class _MainScreenState extends State<MainScreens> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
@@ -104,6 +104,7 @@ class _MainScreenState extends State<MainScreens> {
 
             child: Padding(
               padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+              child: SingleChildScrollView (
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -146,7 +147,7 @@ class _MainScreenState extends State<MainScreens> {
                     ),
                     
               SizedBox(height: 20),
-                  Container(
+                  SizedBox(
                     width: 500,
                     child: FormBuilderTextField(
                     controller: isiController,
@@ -163,7 +164,7 @@ class _MainScreenState extends State<MainScreens> {
                   ),
 
                     SizedBox(height: 40),
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
                           onPressed: () async {
@@ -177,9 +178,11 @@ class _MainScreenState extends State<MainScreens> {
                                             backgroundColor: Colors.greenAccent,
                                             flushbarPosition:
                                                 FlushbarPosition.TOP,
+                                          // ignore: use_build_context_synchronously
                                           ).show(context)
                                         },
                                       _getData(),
+                                      // ignore: avoid_print
                                       print("Sukses"),
                                     });
                           },
@@ -201,7 +204,7 @@ class _MainScreenState extends State<MainScreens> {
                             return Column(
                               children: [
                                 for (var item in snapshot.data!)
-                                  Container(
+                                  SizedBox(
                                     width: MediaQuery.of(context).size.width,
                                     child: ListView(
                                       shrinkWrap: true,
@@ -226,7 +229,7 @@ class _MainScreenState extends State<MainScreens> {
                                                               EditPage(
                                                                   id: item.id,
                                                                   isiMotivasi: item
-                                                                      .isiMotivasi),
+                                                                      .isiMotivasi, userid: '', idMotivasi: '',),
                                                         ));
                                                   },
                                                 ),
@@ -250,6 +253,7 @@ class _MainScreenState extends State<MainScreens> {
                                                                         FlushbarPosition
                                                                             .TOP,
                                                                   ).show(
+                                                                      // ignore: use_build_context_synchronously
                                                                       context)
                                                                 }
                                                             });
@@ -274,6 +278,7 @@ class _MainScreenState extends State<MainScreens> {
                           }
                         })
                   ]),
+            ),
             ),
           ),
         ),
