@@ -1,6 +1,9 @@
+// ignore_for_file: file_names
+
 import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:org/Models/Login_Model.dart';
@@ -9,8 +12,9 @@ import 'MainScreens.dart';
 import 'Register.dart';
 
 class Login extends StatefulWidget {
-  Login({Key? key}) : super(key: key);
+  const Login({super.key});
   @override
+  // ignore: library_private_types_in_public_api
   _LoginState createState() => _LoginState();
 }
 
@@ -30,22 +34,21 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
 
   Future<LoginModels?> postLogin(String email, String password) async {
     var dio = Dio();
-    String baseurl = 'https://78d4-103-108-130-37.ngrok-free.app/vigenesia';
+    String baseurl = 'http://localhost/vigenesia/';
     LoginModels? model;
 
     Map<String, dynamic> data = {"email": email, "password": password};
-    print("$baseurl/api/login");
     try {
       final response = await dio.post("$baseurl/api/login",
           data: data,
           options: Options(headers: {'Content-type': 'application/json'}));
 
-      print("Respon -> ${response.data} + ${response.statusCode}");
 
       if (response.statusCode == 200) {
         model = LoginModels.fromJson(response.data);
       }
     } catch (e) {
+      // ignore: avoid_print
       print("Failed to load $e");
     }
 
@@ -62,7 +65,7 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
       child: Container(
         height: MediaQuery.of(context).size.height,
         margin: const EdgeInsets.only(left: 0, right: 0),
-        decoration: new BoxDecoration(
+        decoration: BoxDecoration(
           color: Colors.blue,
           borderRadius: BorderRadius.all(Radius.circular(12)),
           gradient: LinearGradient(
@@ -160,13 +163,13 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                       SizedBox(
                         height: 30,
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(Colors.white),
-                              shape: MaterialStateProperty.all<
+                                  WidgetStateProperty.all(Colors.white),
+                              shape: WidgetStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18.0),
@@ -182,10 +185,10 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                                             iduser = value.data!.iduser;
                                             Navigator.pushReplacement(
                                                 context,
-                                                new MaterialPageRoute(
+                                                MaterialPageRoute(
                                                     builder: (BuildContext
                                                             context) =>
-                                                        new MainScreens(
+                                                        MainScreens(
                                                             nama: nama!,
                                                             iduser: iduser!)));
                                           })
@@ -209,9 +212,9 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                                 ..onTap = () {
                                   Navigator.push(
                                       context,
-                                      new MaterialPageRoute(
+                                      MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              new Register()));
+                                              Register()));
                                 },
                               style: GoogleFonts.lato(
                                   fontWeight: FontWeight.w600,
