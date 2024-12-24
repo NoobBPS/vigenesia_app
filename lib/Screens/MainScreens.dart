@@ -116,6 +116,7 @@ class _MainScreenState extends State<MainScreens> {
                     Text(
                       "Masukkan Motivasi",
                       style: TextStyle(
+                        fontFamily: 'Montserrat', // Use Montserrat font
                         color: Colors.white,
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
@@ -226,15 +227,26 @@ class _MainScreenState extends State<MainScreens> {
                                       Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(item.isiMotivasi.toString()),
+                                          Text(
+                                            item.isiMotivasi.toString(),
+                                            style: TextStyle(
+                                              fontFamily: 'Lato', // Use Lato font for isiMotivasi
+                                            ),
+                                          ),
                                           SizedBox(height: 5),
                                           Text(
                                             "Tanggal Input: ${item.tanggalInput?.toLocal().toString().split(' ')[0]}",
-                                            style: TextStyle(color: Colors.grey),
+                                            style: TextStyle(
+                                              color: Colors.grey,
+                                              fontFamily: 'Lato', // Use Lato font for date input
+                                            ),
                                           ),
                                           Text(
                                             "Tanggal Update: ${item.tanggalUpdate ?? 'Belum diperbarui'}",
-                                            style: TextStyle(color: Colors.grey),
+                                            style: TextStyle(
+                                              color: Colors.grey,
+                                              fontFamily: 'Lato', // Use Lato font for date update
+                                            ),
                                           ),
                                         ],
                                       ),
