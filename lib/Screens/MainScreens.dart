@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, non_constant_identifier_names, empty_catches
+  // ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, avoid_print
 
 import 'dart:convert';
 
@@ -7,8 +7,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:org/Screens/EditPage.dart';
-import 'package:org/Screens/Login.dart';
+import 'package:vigenesia/Screens/EditPage.dart';
+import 'package:vigenesia/Screens/Login.dart';
 import '../Models/Motivasi_Model.dart';
 
 class MainScreens extends StatefulWidget {
@@ -40,11 +40,11 @@ class _MainScreenState extends State<MainScreens> {
           data: body,
           options: Options(
             contentType: Headers.formUrlEncodedContentType,
-            //validateStatus: (status) => true,
           ));
 
       return response;
     } catch (e) {
+      // Handle error
     }
   }
 
@@ -98,37 +98,42 @@ class _MainScreenState extends State<MainScreens> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
-
-            height: MediaQuery.of(context).size.height, // Mengatur tinggi container
-            color: Color(0xFF13B4FF), // Mengatur warna latar belakang
-
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.blue, Colors.purple],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            height: MediaQuery.of(context).size.height,
             child: Padding(
-              padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-              child: SingleChildScrollView (
-              child: Column(
+              padding: const EdgeInsets.only(left: 340.0, right: 340.0),
+              child: SingleChildScrollView(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 1,
-                    ),
+                    SizedBox(height: 110),
                     Text(
-                    "Masukkan Motivasi",
-                    style: TextStyle(
-                      color: Colors.white, // Mengubah warna teks judul
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
+                      "Masukkan Motivasi",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 40),
-
+                    SizedBox(height: 100),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Hallo ${widget.nama}",
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w500,
+                        Container(
+                          color: Colors.black, // Set background color to black
+                          child: Text(
+                            "Hallo ${widget.nama} 😊",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white, // Change text color to white
+                            ),
                           ),
                         ),
                         TextButton(
@@ -141,144 +146,151 @@ class _MainScreenState extends State<MainScreens> {
                               ),
                             );
                           },
-                          child: Icon(Icons.logout),
+                          child: Icon(Icons.logout, color: Colors.white), // Change icon color to white
                         ),
                       ],
                     ),
-                    
-              SizedBox(height: 20),
-                  SizedBox(
-                    width: 500,
-                    child: FormBuilderTextField(
-                    controller: isiController,
-                    name: "isi_motivasi",
-                    decoration: InputDecoration(
-                      filled: true, // Mengaktifkan pengisian latar belakang
-                      fillColor: Colors.white, // Mengatur warna latar belakang menjadi putih 
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white), // Mengatur warna border menjadi putih
+                    SizedBox(height: 110),
+                    Center(
+                      child: Image.asset(
+                        'assets/images/pic1.jpg',
+                        width: 501,
+                        height: 501,
                       ),
-                      contentPadding: EdgeInsets.only(left: 10),
                     ),
-                  ),
-                  ),
-
-                    SizedBox(height: 40),
+                    SizedBox(height: 50),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                      width: 500,
+                      child: FormBuilderTextField(
+                        controller: isiController,
+                        name: "isi_motivasi",
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          contentPadding: EdgeInsets.only(left: 10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 50),
+                    SizedBox(
+                      width: 500,
                       child: ElevatedButton(
-                          onPressed: () async {
-                            await sendMotivasi(isiController.text.toString())
-                                .then((value) => {
-                                      if (value != null)
-                                        {
-                                          Flushbar(
-                                            message: "Berhasil Submit",
-                                            duration: Duration(seconds: 2),
-                                            backgroundColor: Colors.greenAccent,
-                                            flushbarPosition:
-                                                FlushbarPosition.TOP,
-                                          // ignore: use_build_context_synchronously
-                                          ).show(context)
-                                        },
-                                      _getData(),
-                                      // ignore: avoid_print
-                                      print("Sukses"),
-                                    });
-                          },
-                          child: Text("Submit")),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          _getData();
+                        onPressed: () async {
+                          await sendMotivasi(isiController.text.toString())
+                              .then((value) => {
+                                    if (value != null)
+                                      {
+                                        Flushbar(
+                                          message: "Berhasil Submit",
+                                          duration: Duration(seconds: 2),
+                                          backgroundColor: Colors.greenAccent,
+                                          flushbarPosition: FlushbarPosition.TOP,
+                                        ).show(context)
+                                      },
+                                    _getData(),
+                                    print("Sukses"),
+                                  });
                         },
-                        child: Icon(Icons.refresh)),
+                        child: Text("Submit"),
+                      ),
+                    ),
+                    SizedBox(height: 40),
+                    TextButton(
+                      onPressed: () {
+                        _getData();
+                      },
+                      child: Icon(Icons.refresh, color: Colors.white), // Change icon color to white
+                    ),
+                    SizedBox(height: 50),
                     FutureBuilder(
-                        future: getData(),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<List<MotivasiModel>> snapshot) {
-                          if (snapshot.hasData) {
-                            return Column(
-                              children: [
-                                for (var item in snapshot.data!)
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width,
-                                    child: ListView(
-                                      shrinkWrap: true,
-                                      children: [
-                                        //Expanded(
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(item.isiMotivasi.toString()),
-                                            Row(
-                                              children: [
-                                                TextButton(
-                                                  child: Icon(Icons.settings),
-                                                  onPressed: () {
-                                                    //String id;
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (BuildContext
-                                                                  context) =>
-                                                              EditPage(
-                                                                  id: item.id,
-                                                                  isiMotivasi: item
-                                                                      .isiMotivasi, userid: '', idMotivasi: '',),
-                                                        ));
-                                                  },
-                                                ),
-                                                TextButton(
-                                                  child: Icon(Icons.delete),
-                                                  onPressed: () {
-                                                    deletePost(item.id!)
-                                                        .then((value) => {
-                                                              if (value != null)
-                                                                {
-                                                                  Flushbar(
-                                                                    message:
-                                                                        "Berhasil Delete",
-                                                                    duration: Duration(
-                                                                        seconds:
-                                                                            2),
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .redAccent,
-                                                                    flushbarPosition:
-                                                                        FlushbarPosition
-                                                                            .TOP,
-                                                                  ).show(
-                                                                      // ignore: use_build_context_synchronously
-                                                                      context)
-                                                                }
-                                                            });
-                                                    _getData();
-                                                  },
-                                                )
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        //),
-                                      ],
-                                    ),
+                      future: getData(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<MotivasiModel>> snapshot) {
+                        if (snapshot.hasData) {
+                          return Column(
+                            children: [
+                              for (var item in snapshot.data!)
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                              ],
-                            );
-                          } else if (snapshot.hasData &&
-                              snapshot.data!.isEmpty) {
-                            return Text("No Data");
-                          } else {
-                            return CircularProgressIndicator();
-                          }
-                        })
-                  ]),
-            ),
+                                  margin: EdgeInsets.only(bottom: 20), // Add margin for spacing
+                                  padding: EdgeInsets.all(10), // Add padding inside the container
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(item.isiMotivasi.toString()),
+                                          SizedBox(height: 5),
+                                          Text(
+                                            "Tanggal Input: ${item.tanggalInput?.toLocal().toString().split(' ')[0]}",
+                                            style: TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            "Tanggal Update: ${item.tanggalUpdate ?? 'Belum diperbarui'}",
+                                            style: TextStyle(color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          TextButton(
+                                            child: Icon(Icons.edit, color: Colors.yellow),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (BuildContext context) =>
+                                                      EditPage(
+                                                        id: item.id,
+                                                        isiMotivasi: item.isiMotivasi,
+                                                        userid: '',
+                                                        idMotivasi: '',
+                                                      ),
+                                                  ));
+                                            },
+                                          ),
+                                          TextButton(
+                                            child: Icon(Icons.delete, color: Colors.red),
+                                            onPressed: () {
+                                              deletePost(item.id!)
+                                                  .then((value) => {
+                                                        if (value != null)
+                                                          {
+                                                            Flushbar(
+                                                              message: "Berhasil Delete",
+                                                              duration: Duration(seconds: 2),
+                                                              backgroundColor: Colors.redAccent,
+                                                              flushbarPosition: FlushbarPosition.TOP,
+                                                            ).show(context)
+                                                          }
+                                                      });
+                                              _getData();
+                                            },
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                            ],
+                          );
+                        } else if (snapshot.hasData && snapshot.data!.isEmpty) {
+                          return Text("No Data");
+                        } else {
+                          return CircularProgressIndicator();
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
