@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:org/Models/Login_Model.dart';
+import 'package:vigenesia/Models/Login_Model.dart';
 
 import 'MainScreens.dart';
 import 'Register.dart';
@@ -104,7 +104,7 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
               child: Form(
                 key: _fbKey,
                 child: Container(
-                  width: MediaQuery.of(context).size.width / 1.3,
+                  width: MediaQuery.of(context).size.width / 4,
                   margin: const EdgeInsets.only(
                       top: 20, left: 50.0, right: 50.0, bottom: 20),
                   child: Column(
@@ -164,7 +164,7 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                         height: 30,
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery.of(context).size.width * 0.2,
                         child: ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
