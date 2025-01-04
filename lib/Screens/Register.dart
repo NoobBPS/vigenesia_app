@@ -1,13 +1,9 @@
-
-
-// ignore_for_file: file_names, use_build_context_synchronously
-
 import 'package:another_flushbar/flushbar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-// ignore: unused_import
+import 'Login.dart'; // Import Login for navigation
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -55,10 +51,23 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF5F5F5), // Set background color to whitesmoke
+      appBar: AppBar(
+        title: Text("Register"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back), // Back button icon
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => Login()),
+            );
+          },
+        ),
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color.fromARGB(255, 228, 6, 6), Color.fromARGB(255, 217, 255, 0)], // Blue to Purple
+            colors: [Color.fromRGBO(38, 0, 255, 1), Color.fromRGBO(255, 255, 255, 1)], // Blue to Purple
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -86,7 +95,7 @@ class _RegisterState extends State<Register> {
                       controller: nameController,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Color(0xFFF5F5F5), // Set background color to whitesmoke
                         contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
@@ -113,7 +122,7 @@ class _RegisterState extends State<Register> {
                       controller: profesiController,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Color(0xFFF5F5F5), // Set background color to whitesmoke
                         contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
@@ -140,7 +149,7 @@ class _RegisterState extends State<Register> {
                       controller: emailController,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Color(0xFFF5F5F5), // Set background color to whitesmoke
                         contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
@@ -168,7 +177,7 @@ class _RegisterState extends State<Register> {
                       controller: passwordController,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Color(0xFFF5F5F5), // Set background color to whitesmoke
                         contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
@@ -224,6 +233,7 @@ class _RegisterState extends State<Register> {
                                           backgroundColor: Colors.redAccent,
                                           flushbarPosition: FlushbarPosition.TOP,
                                           messageColor: Colors.black, // Warna pesan diatur ke hitam
+                                        // ignore: use_build_context_synchronously
                                         ).show(context)
                                       }
                                   });
