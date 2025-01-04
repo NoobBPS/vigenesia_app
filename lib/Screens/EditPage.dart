@@ -47,7 +47,7 @@ class _EditPageState extends State<EditPage> {
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.blue, Colors.purple],
+                colors: [Color.fromRGBO(38, 0, 255, 1), Color.fromRGBO(255, 255, 255, 1)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -59,25 +59,31 @@ class _EditPageState extends State<EditPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // ignore: unnecessary_string_interpolations
-                    Text("${widget.isi_motivasi ?? 'Edit Motivasi'}"),
-                    SizedBox(
-                      height: 20,
+                    Text("${widget.isi_motivasi ?? 'Edit Motivasi'}",
+                      style: TextStyle(color: Colors.white, fontSize: 35),
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width / 2, // Adjusted width
+                      height: 50,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 3, // Adjusted width
                       child: FormBuilderTextField(
                         name: "isi_motivasi",
                         controller: isiMotivasiC,
                         decoration: InputDecoration(
                           labelText: "Masukkan data baru",
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                           filled: true, // Enable filling
                           fillColor: Colors.white, // Set background color to white
                           contentPadding: EdgeInsets.only(left: 10),
                         ),
                       ),
                     ),
-                    
+                    SizedBox(
+                      height: 50,
+                    ),
                     ElevatedButton(
                         onPressed: () {
                           putPost(isiMotivasiC.text, widget.id.toString())
