@@ -1,3 +1,5 @@
+
+
   // ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, avoid_print
 
 import 'dart:convert';
@@ -77,8 +79,9 @@ class _MainScreenState extends State<MainScreens> {
   }
 
   Future<void> _getData() async {
+    final data = await getData();
     setState(() {
-      _getData();
+      listproduk = data;
     });
   }
 
@@ -100,7 +103,7 @@ class _MainScreenState extends State<MainScreens> {
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.blue, Colors.purple],
+                colors: [Color.fromRGBO(38, 0, 255, 1), Color.fromRGBO(255, 255, 255, 1)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -137,17 +140,21 @@ class _MainScreenState extends State<MainScreens> {
                             ),
                           ),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) => Login(),
-                              ),
-                            );
-                          },
-                          child: Icon(Icons.logout, color: Colors.white), // Change icon color to white
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) => Login(),
+                                  ),
+                                );
+                              },
+                              child: Icon(Icons.logout, color: Colors.white),
+                            ),
+                          ],
                         ),
                       ],
                     ),
