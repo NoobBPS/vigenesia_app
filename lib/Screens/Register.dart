@@ -1,3 +1,5 @@
+
+
 // ignore_for_file: file_names, use_build_context_synchronously
 
 import 'package:another_flushbar/flushbar.dart';
@@ -75,7 +77,7 @@ class _RegisterState extends State<Register> {
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w500,
-                        color: Colors.black, // Warna teks diatur ke hitam
+                        color: Colors.white, // Warna teks diatur ke hitam
                       ),
                     ),
                     SizedBox(height: 50),
