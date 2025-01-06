@@ -75,7 +75,7 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                 end: Alignment.centerRight,
                 colors: [
                   Color.lerp(Color.fromRGBO(38, 0, 255, 1), Color.fromRGBO(0, 26, 255, 1), value)!,
-                  Color.lerp(Color.fromRGBO(255, 255, 255, 1), Color.fromRGBO(255, 255, 255, 1), value)!,
+                  Color.lerp(Color.fromRGBO(0, 0, 0, 1), Color.fromRGBO(0, 0, 0, 1), value)!,
                 ],
               ),
             ),
@@ -121,6 +121,8 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                               cursorColor: Colors.blue,
                               controller: emailController,
                               decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Color(0xFFFFFFFF), // Set background color to whitesmoke
                                 contentPadding: EdgeInsets.only(left: 20),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(18.0),
@@ -144,6 +146,8 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                             controller: passwordController,
                             cursorColor: Colors.blue,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color(0xFFFFFFFF), // Set background color to whitesmoke
                               contentPadding: EdgeInsets.only(left: 20),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(18.0),
