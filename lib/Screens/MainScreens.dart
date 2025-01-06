@@ -103,7 +103,7 @@ class _MainScreenState extends State<MainScreens> {
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color.fromRGBO(38, 0, 255, 1), Color.fromRGBO(255, 255, 255, 1)],
+                colors: [Color.fromRGBO(38, 0, 255, 1), Color.fromRGBO(0, 0, 0, 1)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
