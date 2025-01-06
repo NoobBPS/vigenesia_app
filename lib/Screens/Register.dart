@@ -67,7 +67,7 @@ class _RegisterState extends State<Register> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color.fromRGBO(38, 0, 255, 1), Color.fromRGBO(255, 255, 255, 1)], // Blue to Purple
+            colors: [Color.fromRGBO(38, 0, 255, 1), Color.fromRGBO(0, 0, 0, 1)], // Blue to Purple
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
