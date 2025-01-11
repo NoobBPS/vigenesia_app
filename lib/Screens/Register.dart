@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'Login.dart'; // Import Login for navigation
+// ignore: unused_import
+import 'MainScreens.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
