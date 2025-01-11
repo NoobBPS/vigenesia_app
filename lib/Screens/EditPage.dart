@@ -12,7 +12,9 @@ class EditPage extends StatefulWidget {
   // ignore: non_constant_identifier_names
   final String? isi_motivasi;
   // ignore: non_constant_identifier_names
-  const EditPage({super.key, this.id, this.isi_motivasi, required String userid, required String idMotivasi, String? isiMotivasi});
+  final Function? onUpdate; // Add this line
+  // ignore: non_constant_identifier_names
+  const EditPage({super.key, this.id, this.isi_motivasi, required String userid, required String idMotivasi, String? isiMotivasi, this.onUpdate}); // Modify this line
 
   @override
   // ignore: library_private_types_in_public_api
@@ -90,8 +92,9 @@ class _EditPageState extends State<EditPage> {
                               .then((value) => {
                                     if (value != null)
                                       {
+                                        if (widget.onUpdate != null) widget.onUpdate!(), // Call the callback
                                         // ignore: use_build_context_synchronously
-                                        Navigator.pop(context),
+                                        Navigator.pop(context), 
                                         Flushbar(
                                           message: "Berhasil Update & Refresh dlu",
                                           duration: Duration(seconds: 5),
