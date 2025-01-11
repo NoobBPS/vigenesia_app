@@ -1,4 +1,6 @@
-// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, avoid_print
+
+
+  // ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, avoid_print
 
 import 'dart:convert';
 
@@ -256,42 +258,43 @@ class _MainScreenState extends State<MainScreens> {
                                           ),
                                         ],
                                       ),
-                                      // Row(
-                                      //   children: [
-                                      //     TextButton(
-                                      //       child: Icon(Icons.edit, color: Colors.yellow),
-                                      //       onPressed: () {
-                                      //         Navigator.push(
-                                      //           context,
-                                      //           MaterialPageRoute(
-                                      //             builder: (BuildContext context) =>
-                                      //                 EditPage(
-                                      //                   id: item.id,
-                                      //                   isiMotivasi: item.isiMotivasi,
-                                      //                   userid: '',
-                                      //                   idMotivasi: '',
-                                      //                 ),
-                                      //           ));
-                                      //       },
-                                      //     ),
-                                      //     TextButton(
-                                      //       child: Icon(Icons.delete, color: Colors.red),
-                                      //       onPressed: () {
-                                      //         deletePost(item.id!).then((value) => {
-                                      //           if (value != null) {
-                                      //             Flushbar(
-                                      //               message: "Berhasil Delete",
-                                      //               duration: Duration(seconds: 2),
-                                      //               backgroundColor: Colors.redAccent,
-                                      //               flushbarPosition: FlushbarPosition.TOP,
-                                      //             ).show(context)
-                                      //           }
-                                      //         });
-                                      //         _getData();
-                                      //       },
-                                      //     )
-                                      //   ],
-                                      // ),
+                                      Row(
+                                        children: [
+                                          TextButton(
+                                            child: Icon(Icons.edit, color: Colors.yellow),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (BuildContext context) =>
+                                                      EditPage(
+                                                        id: item.id,
+                                                        isiMotivasi: item.isiMotivasi,
+                                                        userid: '',
+                                                        idMotivasi: '',
+                                                      ),
+                                                ));
+                                            },
+                                          ),
+                                          TextButton(
+                                            child: Icon(Icons.delete, color: Colors.red),
+                                            onPressed: () {
+                                              deletePost(item.id!).then((value) => {
+                                                if (value != null) {
+                                                  Flushbar(
+                                                    message: "Berhasil Delete",
+                                                    duration: Duration(seconds: 2),
+                                                    backgroundColor: Colors.redAccent,
+                                                    flushbarPosition: FlushbarPosition.TOP,
+                                                  ).show(context)
+                                                }
+                                              });
+                                              _getData();
+                                            },
+                                          )
+                                        ],
+                                      ),
+
                                     ],
                                   ),
                                 ),
